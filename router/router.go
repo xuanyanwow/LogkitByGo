@@ -3,7 +3,7 @@ package router
 import (
     "SiamLogKit/app/controller/index"
 	"SiamLogKit/app/controller/install"
-	"SiamLogKit/app/controller/log"
+	"SiamLogKit/app/controller/logs"
 	"SiamLogKit/app/controller/project"
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/net/ghttp"
@@ -25,7 +25,7 @@ func init() {
 			group.ALL("/project/delete_one", ProjectController.DeleteOne)
 
 
-			LogController := log.Controller{}
+			LogController := logs.Controller{}
 			group.ALL("/logs/query", LogController.Query)
 
 		})

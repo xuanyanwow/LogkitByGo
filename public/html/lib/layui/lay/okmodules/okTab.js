@@ -189,10 +189,10 @@ layui.define(["element", "jquery"], function (exports) {
          postLeft = Math.abs(contEle.position().left);//当前移动的位置
       var maxMoveWidth = contWidth - superWidth;//最大可移动的宽度
 
-      /*console.log("maxMoveWidth：" + maxMoveWidth);
-      console.log("superWidth：" + superWidth);
-      console.log("contWidth：" + contWidth);*/
-      // console.log(contEle);
+      /*console.logs("maxMoveWidth：" + maxMoveWidth);
+      console.logs("superWidth：" + superWidth);
+      console.logs("contWidth：" + contWidth);*/
+      // console.logs(contEle);
       for (let i = 0; i < elePrevAll.length; i++) {
          leftWidth += $(elePrevAll[i]).outerWidth() * 1;
       }
