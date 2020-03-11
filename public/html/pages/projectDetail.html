@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>项目详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <script type="text/javascript" src="../lib/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="../lib/echarts/echarts.theme.js"></script>
+    <script type="text/javascript" src="../lib/echarts/world/js/china.js"></script>
+    <link rel="stylesheet" href="../css/oksub.css" media="all" />
+    <style>
+        .project-one {
+            cursor: pointer;
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="ok-body-scroll console">
+    <div class="ok-body home">
+        <div class="layui-row" style="padding:15px">
+            <h1 id="project-title">项目详情</h1>
+            <br>
+            <div id="manager-bd">
+            </div>
+        </div>
+
+        <div class="layui-row layui-col-space15" style="padding:15px;" id="list-bd">
+            <div class="layui-col-xs6 layui-col-md2">
+                <div class="layui-card">
+                    <a class="ok-card-body project-one" href="#" id="chooseApi">
+                        <div class="stat-heading">
+                            接口统计
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="layui-col-xs6 layui-col-md2">
+                <div class="layui-card">
+                    <a class="ok-card-body project-one" href="#" id="chooseException">
+                        <div class="stat-heading">
+                            异常统计
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="layui-col-xs6 layui-col-md2">
+                <div class="layui-card">
+                    <a class="ok-card-body project-one" href="#" id="chooseLogn">
+                        <div class="stat-heading">
+                            日志查询
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../lib/layui/layui.js"></script>
+
+<script type="text/javascript" src="../js/projectDetail.js"></script>

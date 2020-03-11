@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>异常详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <script type="text/javascript" src="../lib/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="../lib/echarts/echarts.theme.js"></script>
+    <script type="text/javascript" src="../lib/echarts/world/js/china.js"></script>
+    <link rel="stylesheet" href="../css/oksub.css" media="all" />
+    <style>
+        #ab_class{
+            color:#1E9FFF;
+        }
+        #ab_file{
+            color: #2F96B4;
+        }
+        .layui-code{
+            border:1px solid #1E9FFF;
+            border-left-width: 3px;
+            line-height: 28px;
+            font-size:16px;
+        }
+        .layui-code{
+            background-color: #fff!important;
+        }
+        .light-code{
+            color: red;
+            font-weight: bolder;
+        }
+        .line-code{
+            display: inline-block;
+            width:40px;
+            border-right: 1px solid #57e1ff;
+            margin-right:10px;
+        }
+        .field_name{
+            width:150px;
+        }
+    </style>
+</head>
+
+<body class="ok-body-scroll console">
+    <div class="ok-body home">
+        <div class="layui-row" style="padding:15px">
+            <!-- 异常类和消息 -->
+            <!-- 文件资源 -->
+            <fieldset class="layui-elem-field">
+                <legend>
+                    <span id="ab_class"></span>
+                    in
+                    <a href="#" title="" id="ab_file"></a>
+                    line
+                    <span id="ab_line">  </span>
+                </legend>
+                <div class="layui-field-box">
+                    <!--异常消息-->
+                    <h2 id="ab_message"></h2>
+                    <!--代码块 如果有的话-->
+                    <pre class="layui-code"><code id="ab_filesoureces"></code></pre>
+                    <hr>
+                    <!--stack-->
+                    <h1>Call Stack</h1>
+                    <ul id="ab_stack">
+                    </ul>
+                </div>
+            </fieldset>
+            <!-- 参数 -->
+            <fieldset class="layui-elem-field">
+                <legend>Param</legend>
+                <div class="layui-field-box" id="ab_param">
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../lib/layui/layui.js"></script>
+<script type="text/javascript" src="../js/projectExceptionDetail.js"></script>

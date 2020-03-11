@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>项目API统计</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <script type="text/javascript" src="../lib/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="../lib/echarts/echarts.theme.js"></script>
+    <script type="text/javascript" src="../lib/echarts/world/js/china.js"></script>
+    <link rel="stylesheet" href="../css/oksub.css" media="all" />
+    <style>
+        .project-one {
+            cursor: pointer;
+            display: block;
+        }
+        .api-lable{
+            width:150px;
+            margin-right: 15px;
+            font-weight: bolder;
+        }
+        .api_response_code{
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body class="ok-body-scroll console">
+    <div class="ok-body home">
+        <div class="layui-row" style="padding:15px">
+            <h1 id="project-title">API统计</h1>
+            <br>
+            <div id="manager-bd">
+                <a class="layui-btn layui-btn-normal layui-btn-sm" href="#" id="backBtn">
+                    返回
+                </a>
+            </div>
+        </div>
+
+        <div class="layui-row layui-col-space15" style="padding:15px;" id="list-bd">
+            <div class="layui-col-xs12 layui-col-md12">
+                <div class="layui-tab" lay-filter="api">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">总览</li>
+                        <li>详情</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <!--接口占用比例-->
+                            <h2>接口占比</h2>
+                            <div class="layui-row layui-col-space15">
+                                <div class="layui-col-xs12 layui-col-md6" >
+                                    <div id="proportion"></div>
+                                </div>
+                                <div class="layui-col-xs12 layui-col-md6">
+                                    <div class="layui-row layui-col-space15">
+                                        <div class="layui-col-xs12 layui-col-md3">
+                                            <div class="layui-card">
+                                                <div class="ok-card-body">
+                                                    <div class="cart-r">
+                                                        <div class="stat-text" id="second_num">0</div>
+                                                        <div class="stat-heading">5秒请求数</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-xs12 layui-col-md3">
+                                            <div class="layui-card ">
+                                                <div class="ok-card-body">
+                                                    <div class="cart-r">
+                                                        <div class="stat-text" id="avg_qps">0.00</div>
+                                                        <div class="stat-heading" >平均QPS</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--请求数量曲线-->
+                            <h2>请求数量</h2>
+                            <div id="request-curve" style="height: 300px;"></div>
+                            <!--错误曲线-->
+                            <h2>错误数量</h2>
+                            <div id="error-curve"  style="height: 300px;"></div>
+                        </div>
+
+
+                        <div class="layui-tab-item">
+                            <form class="layui-form" action="">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">来源</label>
+                                        <div class="layui-input-inline" style="width: 200px;">
+                                            <select name="user_from" lay-verify="" lay-search>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">标识</label>
+                                        <div class="layui-input-inline" style="width: 200px;">
+                                            <input type="text" name="user_identify" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline">
+                                            <button class="layui-btn" lay-submit lay-filter="api_detail">搜索</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <br>
+                            <!--搜索结果-->
+                            <div class="api-detail-not-exists" style="display:none;">
+                                <span style="color:red">查询不到数据</span>
+                            </div>
+                            <div class="api-detail-result" style="display:none;">
+                                <div class="layui-row layui-col-space15">
+                                    <div class="layui-col-xs12 layui-col-md3">
+                                        <span class="api-lable">地址</span>
+                                        <span id="api_full"></span>
+                                    </div>
+                                    <div class="layui-col-xs12 layui-col-md3">
+                                        <span class="api-lable">耗时(ms)</span>
+                                        <span id="consume_time"></span>
+                                    </div>
+                                    <div class="layui-col-xs12 layui-col-md3">
+                                        <span class="api-lable">结果</span>
+                                        <span id="is_success"></span>
+                                    </div>
+                                    <div class="layui-col-xs12 layui-col-md3">
+                                        <span class="api-lable">时间</span>
+                                        <span id="create_time">2019-11-19 10:04:47</span>
+                                    </div>
+                                </div>
+                                <div class="layui-row layui-col-space15">
+                                    <div class="layui-col-md6 layui-col-xs12">
+                                        <span class="api-lable">请求参数</span>
+                                        <div id="api_param">
+                                            <table class="layui-table"  lay-size="sm" id="api_param_table">
+                                           </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-col-md6 layui-col-xs12">
+                                        <span class="api-lable">响应内容</span>
+                                        <div id="api_response">
+                                            <br>
+                                            <pre class="api_response_code">
+{
+    "code": 200,
+    "data": {
+        "list": [
+            {
+                "api_full": "Wechat/JSPAY",
+                "num": 18,
+                "success_times": "17",
+                "fail_times": "1",
+                "avg_consume_time": "52.1111",
+                "proportion": "90%",
+                "can_use": "94.44%"
+            },
+            {
+                "api_full": "Wechat/REFUND",
+                "num": 2,
+                "success_times": "1",
+                "fail_times": "1",
+                "avg_consume_time": "30.0000",
+                "proportion": "10%",
+                "can_use": "50%"
+            }
+        ],
+        "count": 2
+    },
+    "msg": "success"
+}</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../lib/layui/layui.js"></script>
+<script type="text/javascript" src="../js/projectApi.js"></script>

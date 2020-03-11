@@ -13,5 +13,5 @@ func (c *Controller) Index(r *ghttp.Request) {
 		r.Response.RedirectTo("/install")
 	}
 	// 显示后台
-	r.Response.Write("test")
+	r.Response.RedirectTo("html/index.html")
 }

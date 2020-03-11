@@ -3,6 +3,8 @@ package router
 import (
     "SiamLogKit/app/controller/index"
 	"SiamLogKit/app/controller/install"
+	"SiamLogKit/app/controller/log"
+	"SiamLogKit/app/controller/project"
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/net/ghttp"
 )
@@ -15,5 +17,19 @@ func init() {
 		InstallController := install.Controller{}
 		group.ALL("/install", InstallController.Index)
 		group.ALL("/install_run_sql", InstallController.Run)
+
+		s.Group("/api/", func(group *ghttp.RouterGroup) {
+			ProjectController := project.Controller{}
+			group.ALL("/project/get_list", ProjectController.GetList)
+			group.ALL("/project/add", ProjectController.Add)
+			group.ALL("/project/delete_one", ProjectController.DeleteOne)
+
+
+			LogController := log.Controller{}
+			group.ALL("/logs/query", LogController.Query)
+
+		})
 	})
+
+
 }

@@ -1,0 +1,16 @@
+[
+    {
+        "title": "控制台",
+        "href": "pages/console.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe654;",
+        "spread": true,
+        "isCheck": true
+    },
+    {
+        "title": "项目管理",
+        "href": "pages/project.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe6b8;"
+    }
+]
