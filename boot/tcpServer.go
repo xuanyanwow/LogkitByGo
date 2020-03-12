@@ -1,6 +1,7 @@
 package boot
 
 import (
+	"SiamLogKit/app/tcp/apis"
 	"SiamLogKit/app/tcp/logs"
 	"SiamLogKit/library/tcp"
 	"fmt"
@@ -14,8 +15,8 @@ func init() {
 	tcpServer.SetFunctionMap(map[string]interface{}{
 		"report":    logs.Report,
 		"reports":   logs.Reports,
-		"api":       nil,
-		"apis":      nil,
+		"api":       apis.Report,
+		"apis":      apis.Reports,
 		"exception": nil,
 	})
 

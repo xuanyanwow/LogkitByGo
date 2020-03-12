@@ -28,10 +28,17 @@ func Report(data interface{}) string {
 	logsQueue.Push(reportData)
 	return ""
 }
-func Reports(data interface{}) {
-	// 校验输入参数
 
-	// 入队列
+func Reports(data []interface{}) string {
+
+	for _, value := range data {
+		tem := Report(value)
+		if tem != "" {
+			return tem
+		}
+	}
+
+	return ""
 }
 
 func checkRule(obj siam_logs.Entity) bool {

@@ -22,9 +22,17 @@
             <div class="ok-card-body ">
                更新记录
                <hr>
-               <h3>V0.0.1</h3>
-               从PHP TP6版本迁移到go GoFrame，主要解决了：部署步骤减少、http上报改为tcp上报（大幅减少上报损耗  使用队列+定时器消费  不堵塞插入数据库）
-
+               <div class="layui-collapse">
+                  <div class="layui-colla-item">
+                     <h2 class="layui-colla-title">1.0.0</h2>
+                     <div class="layui-colla-content layui-show">
+                        <pre>
+从PHP TP6版本迁移到go GoFrame
+   部署步骤减少
+   http上报改为tcp上报（大幅减少上报损耗  使用队列+定时器消费  不堵塞插入数据库）</pre>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
@@ -37,10 +45,14 @@
 
 
 
+<script>
+   //注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
+   layui.use('element', function(){
+      var element = layui.element;
 
-
-
-
+      //…
+   });
+</script>
 
 
 

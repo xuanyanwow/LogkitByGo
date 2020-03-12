@@ -27,7 +27,7 @@ layui.use(["okUtils", "table", "countUp", "okMock", 'okTab', 'element', 'siamCon
 
     function load_data()
     {
-       okUtils.ajax("/api/api_log/overview", "post", {
+       okUtils.ajax("api/api_log/overview", "post", {
            project_id:id
        }, true).done(function (res) {
            dateArray = res.data.date;
@@ -129,7 +129,7 @@ layui.use(["okUtils", "table", "countUp", "okMock", 'okTab', 'element', 'siamCon
 
     function proportion()
     {
-        let url = siamConfig.config('url') + "/api/api_log/proportion";
+        let url = siamConfig.config('url') + "api/api_log/proportion";
         table.render({
             elem: '#proportion'
             , height: 312
@@ -164,7 +164,7 @@ layui.use(["okUtils", "table", "countUp", "okMock", 'okTab', 'element', 'siamCon
     }
     function user_from_list()
     {
-        okUtils.ajax("/api/api_log/user_from_list", "post", {
+        okUtils.ajax("api/api_log/user_from_list", "post", {
             project_id :id
         }, true).done(function (res) {
             // 渲染选择列表
@@ -202,7 +202,7 @@ layui.use(["okUtils", "table", "countUp", "okMock", 'okTab', 'element', 'siamCon
             layer.msg("请填写标识");return false;
         }
         data.field.project_id = id;
-        okUtils.ajax("/api/api_log/detail", "post", data.field, true).done(function (res) {
+        okUtils.ajax("api/api_log/detail", "post", data.field, true).done(function (res) {
            // 渲染响应结果
             render_detail(res.data);
         }).fail(function (error) {

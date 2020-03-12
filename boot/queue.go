@@ -12,4 +12,9 @@ func init() {
 	di.Set("logsQueue", logsQueue)
 	// 启动监听
 	go consume.Logs(logsQueue)
+
+	apiQueue := gqueue.New()
+	di.Set("apiQueue", apiQueue)
+	// 启动监听
+	go consume.Apis(apiQueue)
 }

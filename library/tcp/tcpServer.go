@@ -74,7 +74,8 @@ func (t Tcp) Parse(c *gtcp.Conn, data string) {
 		if err != nil {
 			fmt.Println("method invoke error:", err)
 		}
-		if r[0].String() != "" {
+
+		if len(r) > 0 && r[0].String() != "" {
 			c.SendPkg([]byte(r[0].String()))
 		}
 	}
