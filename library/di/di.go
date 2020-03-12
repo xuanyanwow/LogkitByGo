@@ -2,10 +2,9 @@ package di
 
 import "github.com/gogf/gf/container/gmap"
 
-var(
+var (
 	globData = gmap.New(true)
 )
-
 
 func Set(name string, value interface{}) {
 	globData.Set(name, value)
@@ -14,4 +13,3 @@ func Set(name string, value interface{}) {
 func Get(name string) interface{} {
 	return globData.Get(name)
 }
-
