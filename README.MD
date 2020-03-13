@@ -22,7 +22,9 @@
 
 查看上报格式说明教程 上报你的数据 「learn how to report data, and do it !」
 
-[Report上报数据](./document/reportData.md)
+[Report上报数据格式说明](./document/reportData.md)
+
+[php上报数据demo](./document/reportCode/php.md)
 
 在平台中搜索查看吧! 「can search data when you need」
 
