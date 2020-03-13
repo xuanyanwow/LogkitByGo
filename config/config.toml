@@ -21,7 +21,7 @@
 [database]
     [[database.default]]
         type = "mysql"
-        link = "root:root@tcp(127.0.0.1:3306)/siamprojectmanage"
+        link = "root:root@tcp(127.0.0.1:3306)/siam_logkit"
     debug = true
     # Database logger.
     [database.logger]

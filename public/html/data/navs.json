@@ -12,5 +12,11 @@
         "href": "pages/project.html",
         "fontFamily": "ok-icon",
         "icon": "&#xe6b8;"
+    },
+    {
+        "title": "上报教程",
+        "href": "pages/reportTeach.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe6b8;"
     }
 ]

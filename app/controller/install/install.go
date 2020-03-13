@@ -44,9 +44,23 @@ func (c *Controller) Index(r *ghttp.Request) {
 func (c *Controller) Run(r *ghttp.Request) {
 	// 表不存在则创建表
 	if mysql.IsExistTable("siam_logs") {
-		response.EchoExit(r, "表结构已存在")
+		response.EchoExit(r, "siam_logs表结构已存在")
 	}
 	if !mysql.CreateTable("siam_logs") {
+		response.EchoExit(r, "siam_logs创建失败")
+	}
+
+	if mysql.IsExistTable("siam_api_log") {
+		response.EchoExit(r, "siam_api_log表结构已存在")
+	}
+	if !mysql.CreateTable("siam_api_log") {
+		response.EchoExit(r, "siam_api_log创建失败")
+	}
+
+	if mysql.IsExistTable("siam_projects") {
+		response.EchoExit(r, "表结构已存在")
+	}
+	if !mysql.CreateTable("siam_projects") {
 		response.EchoExit(r, "创建失败")
 	}
 

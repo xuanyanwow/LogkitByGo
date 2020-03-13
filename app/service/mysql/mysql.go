@@ -28,20 +28,36 @@ func IsExistTable(tableName string) bool {
 }
 
 func CreateTable(tableName string) bool {
+	var sql []byte
+	var err error
 	switch {
 	case tableName == "siam_logs":
-		db := g.DB()
-		sql, err := ioutil.ReadFile("./public/resource/siam_logs.sql")
+		sql, err = ioutil.ReadFile("./public/resource/siam_logs.sql")
 		if err != nil {
 			fmt.Printf("打开文件失败" + err.Error())
 			return false
 		}
 
-		_, execErr := db.Exec(string(sql))
-		if execErr != nil {
+	case tableName == "siam_projects":
+		sql, err = ioutil.ReadFile("./public/resource/siam_projects.sql")
+		if err != nil {
+			fmt.Printf("打开文件失败" + err.Error())
 			return false
 		}
-		return true
+
+	case tableName == "siam_api_log":
+		sql, err = ioutil.ReadFile("./public/resource/siam_api_log.sql")
+		if err != nil {
+			fmt.Printf("打开文件失败" + err.Error())
+			return false
+		}
+
 	}
-	return false
+	db := g.DB()
+
+	_, execErr := db.Exec(string(sql))
+	if execErr != nil {
+		return false
+	}
+	return true
 }
