@@ -11,6 +11,15 @@
     Level       = "all"
     Stdout      = true
 
+[compiler]
+    name     = "siam-log-kit"
+    version  = "1.0.0"
+    arch     = "amd64"
+    system   = "linux,windows"
+    output   = ""
+    path     = "./bin"
+    extra    = "-ldflags \"-s -w\""
+
 # Template.
 [viewer]
     Path        = "template"

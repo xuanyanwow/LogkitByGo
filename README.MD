@@ -1,62 +1,34 @@
-# Logkig By Go
+# Log kig By Go
 
+作为一个中间统计平台，可以快速分析API频率、可用性等；日志储存，使用唯一标识储存（如订单号）、指定查询。
 
-## php封包代码
+## 使用前提
 
-```php
-<?php
+基于go语言、goframe框架。「base on Go Language，GoFrame frame work」
 
+## 安装步骤
 
-$sendStr = encode("132");
+先下载源码构建 「Download and build」
 
-$sendStrArray = str_split(str_replace(' ', '', $sendStr), 2);  // 将16进制数据转换成两个一组的数组
+保留config、public目录部署，修改config/config.toml文件中的数据库配置「edit config.toml file to save your database configure」
 
-$socket = socket_create(AF_INET, SOCK_STREAM, getprotobyname("tcp"));  // 创建Socket
+启动，访问`127.0.0.1:8199(默认情况)`  「run and access `127.0.0.1:8199` in browser」
 
-if (socket_connect($socket, "127.0.0.1", 8999)) {  //连接
-    $send = '';
-    for ($j = 0; $j < count($sendStrArray); $j++) {
-        $send .= chr(hexdec($sendStrArray[$j]));
-    }
-    socket_write($socket, $send);
-} else {
-    echo "connection error";
-}
-socket_close($socket);  // 关闭Socket
+你可以看到这个页面，开始安装「import mysql struct」
 
+[![8udJE9.png](https://s1.ax1x.com/2020/03/13/8udJE9.png)](https://imgchr.com/i/8udJE9)
 
-function encode($string){
-    $len = strlen($string);
-    // 补位到4位
-    $len = dechex($len);
-    if (strlen($len) < 4) {
-        $pd = 4 - strlen($len);
-        $realyPd = '';
-        while($pd>0){
-            $realyPd .= "0";
-            $pd--;
-        }
-        $realyPd.=$len;
-    }else{
-        $realyPd = $len;
-    }
-    return $realyPd . strToHex($string);
-}
+安装完成后添加项目 「add the project after install」
 
-function strToHex($string)
-{
-    $hex = "";
-    for ($i = 0; $i < strlen($string); $i++)
-        $hex .= dechex(ord($string[$i]));
-    $hex = strtoupper($hex);
-    return $hex;
-}
+查看上报格式说明教程 上报你的数据 「learn how to report data, and do it !」
 
-function hexToStr($hex)
-{
-    $string = "";
-    for ($i = 0; $i < strlen($hex) - 1; $i += 2)
-        $string .= chr(hexdec($hex[$i].$hex[$i + 1]));
-    return $string;
-}
-```
+[Report上报数据](./document/reportData.md)
+
+在平台中搜索查看吧! 「can search data when you need」
+
+遇到问题希望能反馈给我改进! 「if it have question ,please tell me」
+
+## 使用场景
+
+- 日志查询 一般用于自己记录程序的运行状态使用。使用订单号做记录，如果某个订单出问题，可以查询出整条调用链
+- api统计  用于接口可用性、性能分析，可以查到平均耗时、失败次数等，在SAAS等类型平台时还可以加上第三方客户的订单号，可以协助客户分析接口接入，加快对接
