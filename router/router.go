@@ -31,6 +31,8 @@ func init() {
 			ApiController := apis.Controller{}
 			group.ALL("api_log/overview", ApiController.Overview)
 			group.ALL("api_log/user_from_list", ApiController.UserFromList)
+			group.ALL("api_log/proportion", ApiController.Proportion)
+			group.ALL("api_log/detail", ApiController.Detail)
 		})
 	})
 

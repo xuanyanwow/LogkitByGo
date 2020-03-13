@@ -14,6 +14,10 @@
     <script type="text/javascript" src="../lib/echarts/echarts.theme.js"></script>
     <script type="text/javascript" src="../lib/echarts/world/js/china.js"></script>
     <link rel="stylesheet" href="../css/oksub.css" media="all" />
+
+
+    <link rel="stylesheet" href="../css/jquery.jsonview.css" media="all" />
+
     <style>
         .project-one {
             cursor: pointer;
@@ -27,6 +31,12 @@
         .api_response_code{
             background-color: #f0f0f0;
             padding: 10px;
+        }
+        .detail-bd{
+            display:none;
+        }
+        .detail-open{
+            background: #f3edd3;
         }
     </style>
 </head>
@@ -83,8 +93,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--请求数量曲线-->
-                            <h2>请求数量</h2>
+                            <br>
+                            <!--正常请求数量曲线-->
+                            <h2>正常请求数量</h2>
                             <div id="request-curve" style="height: 300px;"></div>
                             <!--错误曲线-->
                             <h2>错误数量</h2>
@@ -121,68 +132,20 @@
                                 <span style="color:red">查询不到数据</span>
                             </div>
                             <div class="api-detail-result" style="display:none;">
-                                <div class="layui-row layui-col-space15">
-                                    <div class="layui-col-xs12 layui-col-md3">
-                                        <span class="api-lable">地址</span>
-                                        <span id="api_full"></span>
-                                    </div>
-                                    <div class="layui-col-xs12 layui-col-md3">
-                                        <span class="api-lable">耗时(ms)</span>
-                                        <span id="consume_time"></span>
-                                    </div>
-                                    <div class="layui-col-xs12 layui-col-md3">
-                                        <span class="api-lable">结果</span>
-                                        <span id="is_success"></span>
-                                    </div>
-                                    <div class="layui-col-xs12 layui-col-md3">
-                                        <span class="api-lable">时间</span>
-                                        <span id="create_time">2019-11-19 10:04:47</span>
-                                    </div>
-                                </div>
-                                <div class="layui-row layui-col-space15">
-                                    <div class="layui-col-md6 layui-col-xs12">
-                                        <span class="api-lable">请求参数</span>
-                                        <div id="api_param">
-                                            <table class="layui-table"  lay-size="sm" id="api_param_table">
-                                           </table>
-                                        </div>
-                                    </div>
 
-                                    <div class="layui-col-md6 layui-col-xs12">
-                                        <span class="api-lable">响应内容</span>
-                                        <div id="api_response">
-                                            <br>
-                                            <pre class="api_response_code">
-{
-    "code": 200,
-    "data": {
-        "list": [
-            {
-                "api_full": "Wechat/JSPAY",
-                "num": 18,
-                "success_times": "17",
-                "fail_times": "1",
-                "avg_consume_time": "52.1111",
-                "proportion": "90%",
-                "can_use": "94.44%"
-            },
-            {
-                "api_full": "Wechat/REFUND",
-                "num": 2,
-                "success_times": "1",
-                "fail_times": "1",
-                "avg_consume_time": "30.0000",
-                "proportion": "10%",
-                "can_use": "50%"
-            }
-        ],
-        "count": 2
-    },
-    "msg": "success"
-}</pre>
-                                        </div>
-                                    </div>
-                                </div>
+                                <table class="layui-table">
+                                    <thead>
+                                    <tr>
+                                        <th>地址</th>
+                                        <th>耗时</th>
+                                        <th>结果</th>
+                                        <th>时间</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tbody">
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -193,5 +156,7 @@
 </body>
 
 </html>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="../lib/layui/layui.js"></script>
 <script type="text/javascript" src="../js/projectApi.js"></script>
+<script type="text/javascript" src="../js/jquery.jsonview.min.js"></script>

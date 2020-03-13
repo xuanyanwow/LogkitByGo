@@ -143,7 +143,7 @@ layui.use(["okUtils", "table", "countUp", "okMock", 'okTab', 'element', 'siamCon
                 , { field: 'num', title: '请求数'}
                 , { field: 'fail_times', title: '失败次数'}
                 , { field: 'avg_consume_time', title: '平均耗时(ms)'}
-                , { field: 'proportion', title: '占比'}
+                , { field: 'proportion', title: '占比(%)'}
                 , { field: 'can_use', title: '可用性'}
             ]]
             , response: {
@@ -228,20 +228,57 @@ layui.use(["okUtils", "table", "countUp", "okMock", 'okTab', 'element', 'siamCon
             not_exists_dom.css("display", "block");
             return true;
         }else{
-            result_dom.css("display", "block");
+            $("#tbody").empty();
+            $.each(data, function (idenx, item) {
+                let html = `
+                        <tr>
+                            <td>${item.api_full}</td>
+                            <td>${item.consume_time}</td>
+                            <td>${item.is_success}</td>
+                            <td>${item.create_time}</td>
+                            <td><div class="layui-btn layui-btn-xs layui-btn-normal detail-btn">展开</div></td>
+                        </tr>
+                        <tr class="detail-bd detail-open">
+                            <td colspan="6" >
+请求参数
+<pre data-detail-id="${item.id}">
+${item.api_param}
+</pre>
+<hr>
+响应内容
+<pre>
+${item.api_response}
+</pre>
+                            </td>
+                        </tr>
+                    `;
+                result_dom.css("display", "block");
+                $("#tbody").append(html);
+
+                // 判断数据是否为json
+                if (isJSON(item.api_param) ){
+                    $(`pre[data-detail-id=${item.id}]`).JSONView(item.api_param);
+                }
+            })
+
         }
-
-        api_full_dom.html(data.api_full);
-        consume_time_dom.html(data.consume_time);
-        is_success_dom.html(data.is_success == 1 ? "成功" : "<span style='color:red'>失败</span>");
-        create_time_dom.html(data.create_time);
-        api_param_table_dom.empty();
-        $.each(data.api_param, function(index, item){
-            api_param_table_dom.append(`<tr><td class="field_name">${index}</td><td>${item}</td></tr>`)
-        });
-
-        api_response_code_dom.html(HTMLEncode(data.api_response));
     }
+
+    $("#tbody").on("click", ".detail-btn",function () {
+        // 是展开还是收缩
+        var open = $(this).attr("data-open");
+
+        if (open === "2" || open === undefined){ // 当前没有打开 所以要打开
+            $(this).html("收缩");
+            $(this).parent("td").parent("tr").next("tr").removeClass("detail-bd");
+            $(this).attr("data-open", "1");
+        }else{// 当前已经打开  所以要关闭
+            $(this).html("展开");
+            $(this).attr("data-open", "2");
+            $(this).parent("td").parent("tr").next("tr").addClass("detail-bd");
+        }
+    });
+
 
     function HTMLEncode(html) {
         var temp = document.createElement("div");
@@ -249,6 +286,17 @@ layui.use(["okUtils", "table", "countUp", "okMock", 'okTab', 'element', 'siamCon
         var output = temp.innerHTML;
         temp = null;
         return output;
+    }
+
+    function isJSON(str) {
+        if (typeof str == 'string') {
+            try {
+                var obj=JSON.parse(str);
+                return !!(typeof obj == 'object' && obj);
+            } catch(e) {
+                return false;
+            }
+        }
     }
 
     load_data();

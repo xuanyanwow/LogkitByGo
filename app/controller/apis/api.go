@@ -3,7 +3,6 @@ package apis
 import (
 	"SiamLogKit/app/model/siam_logs"
 	"SiamLogKit/app/service/apis"
-	"SiamLogKit/app/service/logs"
 	"SiamLogKit/library/response"
 	"github.com/gogf/gf/container/garray"
 	"github.com/gogf/gf/frame/g"
@@ -37,6 +36,17 @@ func (c *Controller) UserFromList(r *ghttp.Request) {
 
 	res := apis.UserFromList(projectId)
 
+	response.JsonExit(r, 200, "ok", g.Map{
+		"list":  res,
+		"count": 0,
+	})
+}
+
+func (c *Controller) Proportion(r *ghttp.Request) {
+	projectId, _ := strconv.Atoi(r.Get("project_id").(string))
+
+	// 可以改成筛选日期
+	res := apis.Proportion(projectId, gtime.Now().Format("Ymd"))
 	response.JsonExit(r, 200, "ok", g.Map{
 		"list":  res,
 		"count": 0,
@@ -80,14 +90,15 @@ func initDateArray() interface{} {
 
 }
 
-func (c *Controller) Query(r *ghttp.Request) {
+func (c *Controller) Detail(r *ghttp.Request) {
 	projectId, projectIdErr := strconv.Atoi(r.Get("project_id").(string))
 	if projectIdErr != nil {
 		response.JsonExit(r, 500, "error", projectIdErr.Error())
 	}
-	logSn := r.Get("log_sn").(string)
+	userFrom := r.Get("user_from").(string)
+	userIdentify := r.Get("user_identify").(string)
 
-	res := logs.QueryByProjectSn(projectId, logSn)
+	res := apis.Detail(projectId, userFrom, userIdentify)
 
 	if res == nil {
 		res = []*siam_logs.Entity{}
