@@ -37,8 +37,8 @@
 
 ## 截图一览
 
-![8u6EY4.png](https://s1.ax1x.com/2020/03/13/8u6EY4.png)
+[![8u6EY4.png](https://s1.ax1x.com/2020/03/13/8u6EY4.png)](https://imgchr.com/i/8u6EY4)
 
 --------
 
-![8u6Wn0.png](https://s1.ax1x.com/2020/03/13/8u6Wn0.png)
+[![8u6Wn0.png](https://s1.ax1x.com/2020/03/13/8u6Wn0.png)](https://imgchr.com/i/8u6Wn0)
