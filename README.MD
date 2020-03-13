@@ -10,6 +10,11 @@
 
 先下载源码构建 「Download and build」
 
+不想构建和学习go语言，直接下载我们构建好的包吧（支持windows和linux 64位系统）
+
+- windows [马上就有]
+- linux [马上就有]
+
 保留config、public目录部署，修改config/config.toml文件中的数据库配置「edit config.toml file to save your database configure」
 
 启动，访问`127.0.0.1:8199(默认情况)`  「run and access `127.0.0.1:8199` in browser」
