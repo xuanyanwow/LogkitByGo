@@ -17,6 +17,7 @@ layui.use(["okUtils", "table", "countUp", "okMock", 'okTab'], function () {
     $("#chooseApi").attr('href', `projectApi.html?id=${id}&name=${name}`);
     $("#chooseException").attr('href', `projectException.html?id=${id}&name=${name}`);
     $("#chooseLogn").attr('href', `projectLog.html?id=${id}&name=${name}`);
+    $("#chooseTodo").attr('href', `projectTodo.html?id=${id}&name=${name}`);
 });
 
 
