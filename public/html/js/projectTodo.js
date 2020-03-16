@@ -22,11 +22,20 @@ layui.use(["okUtils", "table", "countUp", "okMock", 'okTab', 'table', 'siamConfi
         return false;
     });
 
-    $('#dragslot').dragslot({
-        dropCallback: function(el){
-            // 把子元素的当前状态修改为目标
-            
-        }
+    var todoNo = document.getElementById('todo-no');
+    var sortableNo = Sortable.create(todoNo,{
+        group: 'shared',
+        animation: 150
+    });
+    var todoIng = document.getElementById('todo-ing');
+    var sortableIng = Sortable.create(todoIng,{
+        group: 'shared',
+        animation: 150
+    });
+    var todoFinish = document.getElementById('todo-finish');
+    var sortableFinish = Sortable.create(todoFinish,{
+        group: 'shared',
+        animation: 150
     });
 
     function isJSON(str) {
