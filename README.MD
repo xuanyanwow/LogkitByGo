@@ -2,6 +2,12 @@
 
 作为一个中间统计平台，可以快速分析API频率、可用性等；日志储存，使用唯一标识储存（如订单号）、指定查询。
 
+## 作者
+
+QQ 59419979
+Email 59419979@qq.com
+交流群 人数较少，暂无，可以先加QQ交流，后续拉群
+
 ## 使用前提
 
 基于go语言、goframe框架。「base on Go Language，GoFrame frame work」
