@@ -12,6 +12,11 @@
 
 基于go语言、goframe框架。「base on Go Language，GoFrame frame work」
 
+运行go程序后默认开启两个监听服务
+
+- http服务 用于后台查询展示页面 默认8199端口
+- tcp服务  用于接收上报数据 默认8999端口
+
 ## 安装步骤
 
 先下载源码构建 「Download and build」
@@ -21,7 +26,7 @@
 - windows [马上就有]
 - linux [马上就有]
 
-保留config、public目录部署，修改config/config.toml文件中的数据库配置「edit config.toml file to save your database configure」
+保留config、public、template目录部署，修改config/config.toml文件中的数据库配置「edit config.toml file to save your database configure」
 
 启动，访问`127.0.0.1:8199(默认情况)`  「run and access `127.0.0.1:8199` in browser」
 
@@ -29,7 +34,9 @@
 
 [![8udJE9.png](https://s1.ax1x.com/2020/03/13/8udJE9.png)](https://imgchr.com/i/8udJE9)
 
-安装完成后添加项目 「add the project after install」
+导入数据库成功后，修改后台页面的接口地址为服务器ip+端口（默认为127.0.0.1:8199） 地址在`public/lib/layui/lay/okmodules/siamConfig.js`
+
+完成后添加项目 「add the project after install」
 
 查看上报格式说明教程 上报你的数据 「learn how to report data, and do it !」
 
