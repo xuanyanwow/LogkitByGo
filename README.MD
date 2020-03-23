@@ -37,6 +37,8 @@
 
 [php上报数据demo](./document/reportCode/php.md)
 
+[java上报数据demo](./document/reportCode/java.md)
+
 在平台中搜索查看吧! 「can search data when you need」
 
 遇到问题希望能反馈给我改进! 「if it have question ,please tell me」
